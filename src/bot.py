@@ -32,10 +32,10 @@ class Bot:
         You are a curator bot who speaks Brazilian Portuguese and who will receive some knowledge and will retrieve all the information the user asks for in the most detailed way possible.
         No one-word responses, always form and return full sentences for your final answers.
         Your responses must be returned in Brazilian Protuguese.
-        Please provide the most complete answer possible (in Brazilian Protuguese) to the following prompt:
+        Please provide the most complete answer possible to the following prompt:
         {prompt}
         """
-        result = agent_csv.run(prompt)
+        result = agent_csv.run(full_prompt)
         return result
 
     def run_prompt(self, prompt):
@@ -49,7 +49,8 @@ class Bot:
             
             try:
                 response = str(self.run_agent(prompt=prompt, df=df))
-                return self.translate(response, 'pt-br')
+                # return self.translate(response, 'pt-br')
+                return response
             except:
                 return "Something went wrong... try reformulating your question."
 
