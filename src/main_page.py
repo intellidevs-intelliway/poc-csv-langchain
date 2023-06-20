@@ -73,10 +73,10 @@ if authentication_status == True:
     
     show_pages(
         [
-            Page(path="src\\main_page.py", name="Home", icon="🏠"),
-            Page(path="src\\CSVBot.py", name="Bot Leitor de CSV", icon="📄"),
-            Page(path="src\\SQLBot.py", name="Bot de SQL", icon="📊"),
-            Page(path="src\\APIBot.py", name="Bot de APIs", icon="🌐"),
-            Page(path="src\\MongoBot.py", name="MongoDBot", icon="🍃")
+            Page(path="src/main_page.py", name="Home", icon="🏠"),
+            Page(path="src/CSVBot.py", name="Bot Leitor de CSV", icon="📄"),
+            Page(path="src/SQLBot.py", name="Bot de SQL", icon="📊"),
+            Page(path="src/APIBot.py", name="Bot de APIs", icon="🌐"),
+            Page(path="src/MongoBot.py", name="MongoDBot", icon="🍃")
         ]
     )
