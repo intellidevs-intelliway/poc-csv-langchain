@@ -24,7 +24,7 @@ if file:
     with st.spinner("Lendo o arquivo... já preparou suas perguntas? ;)"):
         file_name = str(file.name)
         file_path = os.path.join('files', file_name)
-        with open(file_path, "wb", encoding='latin-1') as f:
+        with open(file_path, "w", encoding='latin-1') as f:
             f.write(file.getvalue())
     st.success("Terminei de ler! Pergunte o que quiser sobre o arquivo.")
     
