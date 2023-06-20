@@ -28,7 +28,7 @@ class Bot:
 
     def run_agent(self, prompt: str, df: pd.DataFrame) -> str:
         # agent = create_csv_agent(OpenAI(temperature=0), files, verbose=True)
-        agent_csv = create_pandas_dataframe_agent(ChatOpenAI(temperature=0.7, model='gpt-3.5-turbo-16k'), df=df, verbose=True)
+        agent_csv = create_pandas_dataframe_agent(OpenAI(temperature=0), df=df, verbose=True)
         full_prompt = f"""
         You are a curator bot who speaks Brazilian Portuguese and who will receive some knowledge and will retrieve all the information the user asks for in the most detailed way possible.
         No one-word responses, always form and return full sentences for your final answers.
