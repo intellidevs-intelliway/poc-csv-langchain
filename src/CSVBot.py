@@ -24,8 +24,9 @@ if file:
     with st.spinner("Lendo o arquivo... já preparou suas perguntas? ;)"):
         file_name = str(file.name)
         file_path = os.path.join('files', file_name)
-        with open(file_path, "wb") as f:
-            f.write(file.getvalue())
+        with open(file_path, "w", encoding='utf-8') as f:
+            text = file.getvalue().decode('utf-8')
+            f.write(text)
     st.success("Terminei de ler! Pergunte o que quiser sobre o arquivo.")
     
     user_prompt = st.text_area(label="Você diz: ")
