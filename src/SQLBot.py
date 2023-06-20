@@ -19,7 +19,7 @@ except FileNotFoundError:
     print('caught')
     os.mkdir('files')
 
-db_path = os.path.abspath('src\\db\\chinook.db')
+db_path = os.path.abspath('src/db/chinook.db')
 
 st.markdown("### Como este é um bot de demonstração, ele já tem um banco de dados, mas os bancos de dados SQL mais populares podem ser utilizados com ele, como MS SQLServer, MySql, sqlite, Postgres, etc.")
 st.markdown("#### Note que o único conhecimento e referências do bot estão na base de dados, então apelidos, gírias e palavras que fazem referência aos dados, mas que não foram passados, não serão compreendidos.")
