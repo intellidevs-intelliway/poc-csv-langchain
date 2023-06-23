@@ -35,8 +35,9 @@ class Bot:
         Your responses must be returned in Brazilian Protuguese.
         Given the example rows provided, study their structure in order to perfect your queries on the dataframe:
         {example_rows}
-        Now, extract what the user wnats with the following prompt and extract it from the dataframe: {prompt}
+        Now, interpret what the user wants with the following prompt and extract it from the dataframe: {prompt}
         Now, return your response in the most complete way possible:"""
+        
         result = agent_csv.run(full_prompt)
         return result
 
@@ -45,21 +46,19 @@ class Bot:
         if self.files:
             for file in self.files:
                 path = f"files/{file}"
-                separators = ";"
-                df = pd.read_csv(path, on_bad_lines='skip', sep=separators, encoding='utf-8')
+                delimiter = ";"
+                df = pd.read_csv(path, on_bad_lines='skip', delimiter=delimiter, encoding='utf-8')
                 self.file_paths.append(path)
-            # print(type(df.head(10)))
             example_rows = df.head(5)
-            
-            try:
-                response = str(self.run_agent(prompt=prompt, df=df, example_rows=example_rows))
-                # return self.translate(response, 'pt-br')
-                return response
-            except:
-                return "Houve um erro ao ler o arquivo ou ao interpretar a sua pergunta. Verifique a formatação ou reformule sua pergunta."
+            response = self.run_agent(prompt=prompt, df=df, example_rows=example_rows)
+            if response == "Agent stopped due to iteration limit or time limit.":
+                for file in self.files:
+                    path = f"files/{file}"
+                    df = pd.read_csv(path, on_bad_lines='skip', encoding='utf-8')
+                    self.file_paths.append(path)
+                example_rows = df.head(5)
+                response = self.run_agent(prompt=prompt, df=df, example_rows=example_rows)
+                                
+            return response
         else:
             return 'Não achei nenhum arquivo nesse diretório *sigh*'
-
-if __name__ == '__main__':
-    bot = Bot()
-    bot.run_prompt("Which comedy movies has Antonio Banderas been in?")
