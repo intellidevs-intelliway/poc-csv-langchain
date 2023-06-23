@@ -38,8 +38,13 @@ class Bot:
         Now, interpret what the user wants with the following prompt and extract it from the dataframe: {prompt}
         Now, return your response in the most complete way possible:"""
         
-        result = agent_csv.run(full_prompt)
-        return result
+        try:
+            result = agent_csv.run(full_prompt)
+            return result
+        except openai.InvalidRequestError as e:
+            return textwrap.dedent("""Houve um problema com a requisição do Modelo. O motivo mais comum é que a sua requisição 
+                                   necessitou usar mais tokens do que a quantidade que o seu modelo permite. 
+                                   Visite https://platform.openai.com/docs/guides/error-codes para saber mais sobre o problema.""")
 
     def run_prompt(self, prompt):
         df: pd.DataFrame
