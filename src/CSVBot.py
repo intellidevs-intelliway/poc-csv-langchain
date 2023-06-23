@@ -46,7 +46,7 @@ if file:
             bot = Bot()
             response = bot.run_prompt(prompt=user_prompt)
             if response == "Agent stopped due to iteration limit or time limit.":
-                bot_response = "Hmmmmm... não entendi bem, pode tentar reformular a sua pergunta?"
+                bot_response = "Não consegui encontrar uma resposta. Exitem dois motivos possíveis: 1. a pergunta precisa ser reformulada; 2. o arquivo não está com a formatação correta;"
                 message(user_prompt, is_user=True)
                 message(bot_response)
             else:
