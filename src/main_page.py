@@ -34,7 +34,7 @@ except FileNotFoundError:
     print('caught')
     os.mkdir('files')
 
-hashed = stauth.Hasher([os.getenv("USER_PASS")]).generate()
+hashed = stauth.Hasher([os.getenv("USER_PASS"), os.getenv("INTELLIWAY_PASS")]).generate()
 
 credentials = {
     "usernames": {
@@ -42,6 +42,11 @@ credentials = {
             "email": "admin@email.com",
             "name": "Admin",
             "password": hashed[0]
+        },
+        "intelliway": {
+            "email": "intelliway@intelliway.com.br",
+            "name": "Intelliway",
+            "password": hashed[1]
         }
     }
 }
