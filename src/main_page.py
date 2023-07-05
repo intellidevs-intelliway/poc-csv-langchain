@@ -57,11 +57,13 @@ cookie = {
     "name": "main_cookie"
 }
 
-preauthorized = {
-    "emails": [
-        "admin@email.com"
-    ]
-}
+
+preauthorized = False
+# preauthorized = {
+#     "emails": [
+#         "admin@email.com"
+#     ]
+# }
 
 authenticator = stauth.Authenticate(credentials=credentials, cookie_name=cookie["name"], key=cookie["key"], cookie_expiry_days=cookie["expiry_days"], preauthorized=preauthorized)
 name, authentication_status, username = authenticator.login("Login", "sidebar")
@@ -76,7 +78,8 @@ if authentication_status == True:
     st.sidebar.markdown(f"### Bom te ver, :orange[{name}]!")
     authenticator.logout(button_name="Logout", location="sidebar")
     
-    show_pages(
+    if authentication_status:
+        show_pages(
         [
             Page(path="src/main_page.py", name="Home", icon="🏠"),
             Page(path="src/CSVBot.py", name="Bot Leitor de CSV", icon="📄"),
@@ -85,3 +88,6 @@ if authentication_status == True:
             Page(path="src/MongoBot.py", name="MongoDBot", icon="🍃")
         ]
     )
+    else:
+        with st.sidebar.container():
+            st.empty()
