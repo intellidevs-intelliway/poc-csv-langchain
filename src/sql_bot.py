@@ -28,11 +28,12 @@ class Sql_Bot:
 
         try:    
             if db_uri != '':
+                print(db_uri)
                 db = SQLDatabase.from_uri(
-                # f"sqlite:///{db_url}"
                 database_uri=db_uri
             )
             else:
+                print(db_url)
                 db = SQLDatabase.from_uri(
                 database_uri=f"sqlite:///{db_url}"
             )
