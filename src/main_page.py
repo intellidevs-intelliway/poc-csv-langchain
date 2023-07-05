@@ -77,9 +77,8 @@ if authentication_status == None:
 if authentication_status == True:
     st.sidebar.markdown(f"### Bom te ver, :orange[{name}]!")
     authenticator.logout(button_name="Logout", location="sidebar")
-    
-    if authentication_status:
-        show_pages(
+
+    show_pages(
         [
             Page(path="src/main_page.py", name="Home", icon="🏠"),
             Page(path="src/CSVBot.py", name="Bot Leitor de CSV", icon="📄"),
@@ -88,6 +87,3 @@ if authentication_status == True:
             Page(path="src/MongoBot.py", name="MongoDBot", icon="🍃")
         ]
     )
-    else:
-        with st.sidebar.container():
-            st.empty()
